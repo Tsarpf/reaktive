@@ -52,7 +52,7 @@ module.exports = {
 	loaders: [{
 		test: /\.(js|jsx)$/,
 		exclude: /node_modules/,
-		loader: 'react-hot!babel-loader'
+		loader: 'react-hot!babel-loader?optional[]=es7.classProperties',
 	}, {
 		test: /\.scss/,
 		loader: ExtractTextPlugin.extract( 'style-loader', 'css-loader?module!sass-loader?outputStyle=expanded!cssnext-loader' )

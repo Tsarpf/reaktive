@@ -6,6 +6,12 @@ import About from 'components/about';
 import Map from 'components/map';
 
 export default class Application extends React.Component {
+	static childContextTypes = {
+		interactions: React.PropTypes.object
+	}
+	getChildContext() {
+		return { interactions: this.props.interactions };
+	}
 	render() {
 		return (
 			<Router>

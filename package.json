@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Tsarpf/babel-webpack-react-eslint-boilerplate#readme",
   "dependencies": {
+    "cycle-react": "^2.0.0",
     "history": "^1.9.1",
     "react": "^0.13.3",
     "react-router": "1.0.0-rc1"
