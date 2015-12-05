@@ -9,5 +9,3 @@ function computer( interactions ) {
 }
 
 Cycle.applyToDOM( '#app', computer );
-
-//React.render( <Application history={ createBrowserHistory() }/>, document.getElementById( 'app' ) );
