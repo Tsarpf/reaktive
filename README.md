@@ -1,6 +1,6 @@
-# babel-webpack-react-router-eslint-boilerplate
+# Rekt
 
 * npm install
 * npm start
 
-See https://github.com/Tsarpf/babel-webpack-react-eslint-boilerplate/tree/master/src/components/map for how to use style importing
+Building on top of: https://github.com/Tsarpf/babel-webpack-react-router-eslint-boilerplate
