@@ -10,12 +10,22 @@ class Testink extends React.Component {
 }
 
 let Clicker = Cycle.component( 'Counter', ( interactions ) => {
-	return interactions.get( 'plus' )
-		.startWith( 0 )
-		.scan( 0, acc => acc + 1 ) //old Rx style. remove first argument (0) in rx 3+
-		.map( i =>
-			<button onClick={ interactions.listener( 'plus' ) }> plus one { i } </button>
-		);
+	return Rx.Observable.merge(
+		interactions.get( 'plus' )
+		.map( () => 1 ),
+
+		interactions.get( 'minus' )
+		.map( () => -1 )
+	)
+	.scan( 0, ( acc, i ) => acc + i )
+	.startWith( 0 )
+	.map( i => {
+		return <div>
+			<p> { i } </p>
+			<button onClick={ interactions.listener( 'plus' ) }> plus one </button>
+			<button onClick={ interactions.listener( 'minus' ) }> minus one </button>
+		</div>
+	} );
 } );
 
 let Counter = Cycle.component( 'Counter', ( ) => {
@@ -31,6 +41,7 @@ export default class Home extends React.Component {
 				<div> <Link to="/about"> About </Link> </div>
 				<div> <Link to="/map"> Map </Link> </div>
 				<Clicker/>
+				<p/>
 				<Counter/>
 			</div>
 		);
