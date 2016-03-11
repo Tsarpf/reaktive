@@ -10,32 +10,30 @@ class Testink extends React.Component {
 	}
 }
 
-let Counter = Cycle.component( 'Counter', () => {
+let Clicker = Cycle.component( 'Counter', ( interactions ) => {
+	return interactions.get( 'plus' )
+		.startWith( 0 )
+		.scan( 0, ( acc, i ) => acc + 1 ) //old style. remove first argument (0) in rx 3+
+		.map( i =>
+			<button onClick={ interactions.listener( 'plus' ) }> plus one { i } </button>
+		);
+} );
+
+let Counter = Cycle.component( 'Counter', ( ) => {
 	return Rx.Observable.interval( 1000 ).map( i =>
 		<Testink test={ i } />
 	);
 } );
 
-let List = Cycle.component( 'List', () => {
-	return DOM.getJSON( 'http://tsatter.com/backlog/?channel=%23misc&count=20' )
-	.startWith( [ { message: 'Loading' } ] )
-	.map( ses => {
-		var elems = ses.map( line => {
-			return <div> { line.message } </div>
-		} );
-		return <div> { elems } </div>;
-	} );
-} );
-
 export default class Home extends React.Component {
 	render() {
 		return (
-			<div>
+				<div>
 				<div> <Link to="/about"> About </Link> </div>
 				<div> <Link to="/map"> Map </Link> </div>
+				<Clicker/>
 				<Counter/>
-				<List/>
-			</div>
-		)
+				</div>
+			   )
 	}
 }
