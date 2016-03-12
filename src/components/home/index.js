@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Cycle from 'cycle-react';
-let Rx = Cycle.Rx;
+import Rx from 'rx';
 
 class Testink extends React.Component {
 	render() {
@@ -17,7 +17,7 @@ let Clicker = Cycle.component( 'Counter', ( interactions ) => {
 		interactions.get( 'minus' )
 		.map( () => -1 )
 	)
-	.scan( 0, ( acc, i ) => acc + i )
+	.scan( ( acc, i ) => acc + i )
 	.startWith( 0 )
 	.map( i => {
 		return <div>
