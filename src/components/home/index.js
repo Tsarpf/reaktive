@@ -3,13 +3,11 @@ import { Link } from 'react-router';
 import Cycle from 'cycle-react';
 import Rx from 'rx';
 
-class Testink extends React.Component {
-	render() {
-		return <div> Cheers { this.props.test } </div>;
-	}
-}
+const List = Cycle.component( 'List', ( ) => {
+	return Rx.Observable.just( <div> asdf </div> );
+} );
 
-let Clicker = Cycle.component( 'Counter', ( interactions ) => {
+const Clicker = Cycle.component( 'Counter', ( interactions ) => {
 	return Rx.Observable.merge(
 		interactions.get( 'plus' )
 		.map( () => 1 ),
@@ -28,21 +26,16 @@ let Clicker = Cycle.component( 'Counter', ( interactions ) => {
 	} );
 } );
 
-let Counter = Cycle.component( 'Counter', ( ) => {
-	return Rx.Observable.interval( 1000 ).map( i =>
-		<Testink test={ i } />
-	);
-} );
-
 export default class Home extends React.Component {
 	render() {
 		return (
 			<div>
 				<div> <Link to="/about"> About </Link> </div>
 				<div> <Link to="/map"> Map </Link> </div>
-				<Clicker/>
-				<p/>
-				<Counter/>
+				<Clicker />
+				<p> </p>
+				<p></p>
+				<List/>
 			</div>
 		);
 	}
